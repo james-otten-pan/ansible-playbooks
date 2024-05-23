@@ -36,9 +36,6 @@ jobs:
       - name: Install required collections
         run: pipenv run ansible-galaxy collection install -r collections/requirements.yml
 
-      - name: Run ansible-lint
-        run: pipenv run ansible-lint *.yml
-
       - name: Run Checkov action
         id: checkov
         uses: bridgecrewio/checkov-action@master
@@ -46,3 +43,6 @@ jobs:
           directory: .
           soft_fail: true
           framework: ansible
+
+      - name: Run ansible-lint
+        run: pipenv run ansible-lint *.yml
